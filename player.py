@@ -30,7 +30,7 @@ class Player(CircleShape):
         self.shoot_timer = PLAYER_SHOOT_COOLDOWN
 
     def draw(self, screen):
-        return pygame.draw.polygon(screen, (255, 255, 255), self.triangle(), 2)
+        return pygame.draw.polygon(screen, (255, 255, 255), self.triangle(), LINE_WIDTH)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt

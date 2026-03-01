@@ -20,31 +20,38 @@ def main():
     
     clock = pygame.time.Clock()
     dt = 0                              #delta of time
+    
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    #asteroid_field = AsteroidField()                                #This is just to set an asteroid field so it can generate asteroids
+
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    asteroids = pygame.sprite.Group()
-    shots = pygame.sprite.Group()       #projectiles from player object
+    #asteroids = pygame.sprite.Group()
+    #shots = pygame.sprite.Group()       #projectiles from player object
 
     Player.containers = (updatable, drawable)
-    Asteroid.containers = (asteroids, updatable, drawable)
-    AsteroidField.containers = (updatable)                  #The object that generates random sized asteroids.
-    Shot.containers = (shots, updatable, drawable)
-
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    asteroid_field = AsteroidField()                                #This is just to set an asteroid field so it can generate asteroids
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    #Asteroid.containers = (asteroids, updatable, drawable)
+    #AsteroidField.containers = (updatable)                  #The object that generates random sized asteroids.
+    #Shot.containers = (shots, updatable, drawable)
 
     while True:
 
         log_state()
 
-        pygame.display.flip()
+        #player.update(dt)
+        updatable.update(dt)
+        
 
         for event in pygame.event.get():    #Allows for hitting the X button in a game screen to quit (end the game process) the game
             if event.type == pygame.QUIT:
                 return
 
         screen.fill((0, 0, 0))    #Fills the screen with black (RGB values)
+
+        #player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
 
         pygame.display.flip()
             
