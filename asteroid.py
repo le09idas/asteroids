@@ -3,6 +3,7 @@ import random
 
 from constants import *
 from circleshape import *
+from logger import log_state, log_event
 
 class Asteroid(CircleShape):
 
@@ -12,7 +13,7 @@ class Asteroid(CircleShape):
     def split(self):
         
         if self.radius > ASTEROID_MIN_RADIUS:
-
+            log_event("asteroid_split")
             random_angle = random.uniform(20, 50)
             asteroid1 = Asteroid(0, 0, self.radius - ASTEROID_MIN_RADIUS)
             asteroid2 = Asteroid(0, 0, self.radius - ASTEROID_MIN_RADIUS)
