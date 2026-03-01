@@ -4,6 +4,7 @@
 import pygame
 import sys
 
+from logger import log_state
 from constants import *
 from player import *
 from asteroid import *
@@ -14,7 +15,7 @@ def main():
 
     pygame.init()       #initiate the game
 
-    print("Starting asteroids!")
+    print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
     
     clock = pygame.time.Clock()
@@ -34,6 +35,8 @@ def main():
     asteroid_field = AsteroidField()                                #This is just to set an asteroid field so it can generate asteroids
 
     while True:
+
+        log_state()
 
         pygame.Surface.fill(screen, (0, 0, 0))
 
