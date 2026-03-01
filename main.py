@@ -38,26 +38,15 @@ def main():
 
         log_state()
 
-        pygame.Surface.fill(screen, (0, 0, 0))
-
-        for sprite in updatable:
-            sprite.update(dt)
-        for sprite in drawable:
-            sprite.draw(screen)
-        for asteroid in asteroids:
-            if asteroid.collided(player1):  #Unlucky player object causes game to end if it hits an asteroid
-                print("Game over!")
-                sys.exit(0)
-            for shot in shots:              #If a shot hits an asteroid, they both get destroyed
-                if asteroid.collided(shot):
-                    asteroid.split()
-                    shot.kill()
-
         pygame.display.flip()
 
         for event in pygame.event.get():    #Allows for hitting the X button in a game screen to quit (end the game process) the game
             if event.type == pygame.QUIT:
                 return
+
+        screen.fill((0, 0, 0))    #Fills the screen with black (RGB values)
+
+        pygame.display.flip()
             
         dt = clock.tick(60) / 1000
 
